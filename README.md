@@ -49,7 +49,7 @@ class _MyClassState extends State<MyClass> {
   - assets/images/
 ```
 Ниже приведены скриншоты работы программы:
-![Исполнение программы (1)](images/running_v1_1)
-![Исполнение программы (2)](images/running_v1_2)
-![Исполнение программы (3)](images/running_v1_3)
+![Исполнение программы (1)](images/running_v1_1.jpg)
+![Исполнение программы (2)](images/running_v1_2.jpg)
+![Исполнение программы (3)](images/running_v1_3.jpg)
 
