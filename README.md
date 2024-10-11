@@ -49,7 +49,24 @@ class _MyClassState extends State<MyClass> {
   - assets/images/
 ```
 Ниже приведены скриншоты работы программы:<br>
-<img src="images/running_v1_1.JPG" alt="Исполнение программы (1)" style="width: 50%;">
-![Исполнение программы (2)](images/running_v1_2.JPG)
-![Исполнение программы (3)](images/running_v1_3.JPG)
+<img src="images/running_v1_1.JPG" alt="Исполнение программы (1)" style="width: 50%;"><br>
+<img src="images/running_v1_2.JPG" alt="Исполнение программы (2)" style="width: 50%;"><br>
+<img src="images/running_v1_3.JPG" alt="Исполнение программы (3)" style="width: 50%;"><br>
 
+>Для добавления фотографий создал специальную папку "fonts", а в файле `pubspec.yaml` прописал дирректории:
+
+```dart
+ fonts:
+    - family: TrueType
+      fonts:
+        - asset: fonts/animeAce.ttf
+    - family: OpenType
+      fonts:
+        - asset: fonts/lilita.otf
+    - family: TenorSans
+      fonts:
+        - asset: fonts/tenorSans.ttf
+```
+Ниже приведены скриншоты работы программы:<br>
+<img src="images/fonts_added/fonts1.JPG" alt="Исполнение программы (1)" style="width: 50%;"><br>
+<img src="images/fonts_added/fonts2.JPG" alt="Исполнение программы (2)" style="width: 50%;"><br>
