@@ -17,6 +17,7 @@ class _MyClassState extends State<MyClass> {
   String currentText = "Хотите узнать, как вы выглядите?";
   List<String> endings = [" чудесно!", " волшебно!", " шикарно!"];
   List<String> images = ["assets/images/cat1.jpeg", "assets/images/cat2.jpg", "assets/images/cat3.jpg"];
+  List<String> fonts = ['TrueType', 'OpenType', 'TenorSans'];
   int index = 0;
 
   @override
@@ -30,7 +31,7 @@ class _MyClassState extends State<MyClass> {
               currentText = "Вы выглядите${endings[index]}";
             });
           },
-          child: Text(currentText, style: TextStyle(fontSize: 34)))
+          child: Text(currentText, style: TextStyle(fontFamily: fonts[index], fontSize: 24)))
     ]);
   }
 }

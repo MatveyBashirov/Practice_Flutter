@@ -60,7 +60,16 @@ flutter:
   assets:
   - assets/
   - assets/images/
-  # - assets/fonts/
+  fonts:
+    - family: TrueType
+      fonts:
+        - asset: fonts/animeAce.ttf
+    - family: OpenType
+      fonts:
+        - asset: fonts/lilita.otf
+    - family: TenorSans
+      fonts:
+        - asset: fonts/tenorSans.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
