@@ -70,3 +70,33 @@ class _MyClassState extends State<MyClass> {
 Ниже приведены скриншоты работы программы:<br>
 <img src="images/fonts_added/fonts1.JPG" alt="Исполнение программы (1)" style="width: 50%;"><br>
 <img src="images/fonts_added/fonts2.JPG" alt="Исполнение программы (2)" style="width: 50%;"><br>
+
+### 3. Использование виджетов для добавления отступов и выравнивания
+
+Использовал виджеты `Center` и `Padding` чтобы расположить ранее созданные части интерфейса в центре и добавить отступы для виджета с картинкой
+
+```dart
+@override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+          Padding(
+            padding: EdgeInsets.all(30),
+            child: Image.asset(images[index]),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  index = (index + 1) % endings.length; // Циклический переход
+                  currentText = "Вы выглядите${endings[index]}";
+                });
+              },
+              child: Text(currentText,
+                  style: TextStyle(fontFamily: fonts[index], fontSize: 24)))
+        ]));
+  }
+```
+
