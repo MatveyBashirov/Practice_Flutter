@@ -100,3 +100,92 @@ class _MyClassState extends State<MyClass> {
   }
 ```
 
+### 4. Использование ListView для создания "Списка покупок"
+
+Создал новый файл `product_list.dart` для реализации экрана с возможностью добавления пользователем
+определенного продукта в список покупок. Для отображения самого списка использовал виджет `ListView` с конструктором `separeted`, который предоставит возможность использовать разделитель `Divider`
+
+```dart
+class ListClass extends StatefulWidget {
+  ListClass({super.key});
+  @override
+  _ListClassState createState() => _ListClassState();
+}
+
+class _ListClassState extends State<ListClass>{
+  
+  TextEditingController controller = TextEditingController();
+  void addToList(){
+    String product = controller.text;
+    if (product.isNotEmpty) {
+    setState(() {
+      products.add(product);
+    });
+    controller.clear();
+  }
+  }
+  List<String> products = ['молоко', 'хлеб', 'печенье'];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor:Color.fromARGB(255, 115, 132, 217),
+        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+        title: 
+        Center(
+          child: Text("Список покупок"),
+        )
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Введите название продукта:"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 20.0),
+                    child: TextField(
+                      controller: controller,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Название",
+                      )
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: addToList,
+                    child: Text('Добавить продукт'),
+                    )
+                ],
+              )
+            ),
+            Expanded(
+              flex: 2,
+              child:
+              ListView.separated(
+              itemBuilder: (BuildContext context, int index){
+                return Container(
+                  height: 30,
+                  child: Center(child: Text(products[index]),),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) => const Divider(),
+              itemCount: products.length
+              )
+            )
+          ],
+        ),
+      )
+    );
+  }
+}
+```
+Ниже приведены скриншоты работы программы:<br>
+<img src="images/list/add_list1.JPG" alt="Исполнение программы (1)" style="width: 50%;">
+<img src="images/list/add_list2.JPG" alt="Исполнение программы (2)" style="width: 50%;"><br>
