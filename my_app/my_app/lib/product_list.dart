@@ -9,7 +9,17 @@ class ListClass extends StatefulWidget {
 }
 
 class _ListClassState extends State<ListClass>{
-
+  
+  TextEditingController controller = TextEditingController();
+  void addToList(){
+    String product = controller.text;
+    if (product.isNotEmpty) {
+    setState(() {
+      products.add(product);
+    });
+    controller.clear();
+  }
+  }
   List<String> products = ['молоко', 'хлеб', 'печенье'];
 
   @override
@@ -27,6 +37,7 @@ class _ListClassState extends State<ListClass>{
         child: Column(
           children: [
             Expanded(
+              flex: 2,
               child: Column(
                 children: [
                   Padding(
@@ -36,12 +47,17 @@ class _ListClassState extends State<ListClass>{
                   Padding(
                     padding: const EdgeInsets.fromLTRB(50.0, 20.0, 50.0, 20.0),
                     child: TextField(
+                      controller: controller,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: "Название",
                       )
                     ),
-                  )
+                  ),
+                  ElevatedButton(
+                    onPressed: addToList,
+                    child: Text('Добавить продукт'),
+                    )
                 ],
               )
             ),
@@ -51,8 +67,7 @@ class _ListClassState extends State<ListClass>{
               ListView.separated(
               itemBuilder: (BuildContext context, int index){
                 return Container(
-                  height: 50,
-                  color: Color.fromARGB(255, 255, 250, 111),
+                  height: 30,
                   child: Center(child: Text(products[index]),),
                 );
               },
