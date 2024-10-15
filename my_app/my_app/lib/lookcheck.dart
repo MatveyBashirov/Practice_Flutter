@@ -20,7 +20,13 @@ class _MyClassState extends State<MyClass> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 115, 132, 217),
+        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+        title: Center(child: Text('Генератор комплиментов')),
+      ),
+      body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,6 +44,7 @@ class _MyClassState extends State<MyClass> {
               },
               child: Text(currentText,
                   style: TextStyle(fontFamily: fonts[index], fontSize: 24)))
-        ]));
+        ]))
+    );
   }
 }
