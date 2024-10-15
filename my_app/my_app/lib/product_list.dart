@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 class ListClass extends StatefulWidget {
-  ListClass({super.key});
+  const ListClass({super.key});
   @override
   _ListClassState createState() => _ListClassState();
 }

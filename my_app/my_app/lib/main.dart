@@ -5,6 +5,7 @@ import 'package:my_app/lookcheck.dart';
 import 'package:my_app/product_list.dart';
 
 class Homepage extends StatelessWidget{
+  const Homepage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +46,7 @@ class Homepage extends StatelessWidget{
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
