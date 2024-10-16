@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DaycheckForm extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class DaycheckForm extends StatefulWidget {
 class DaycheckFormState extends State<DaycheckForm>{
 
   final _formKey = GlobalKey<FormState>();
+  final formWordOfDay = TextEditingController();
+  final formGrade = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +32,7 @@ class DaycheckFormState extends State<DaycheckForm>{
               child: Row(children: [
                 Expanded(
                   child: TextFormField(
+                    controller: formWordOfDay,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Как опишите день одним словом?',
@@ -49,6 +53,10 @@ class DaycheckFormState extends State<DaycheckForm>{
               child: Row(children: [
                 Expanded(
                   child: TextFormField(
+                    controller: formGrade,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                    ],
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Поставьте оценку дню по 10-бальной шкале',
@@ -79,9 +87,7 @@ class DaycheckFormState extends State<DaycheckForm>{
   }
 
   void submitForm(){
-    if(_formKey.currentState?.validate()??false){
-      
-    }
+    if(_formKey.currentState?.validate()??false){}
   }
 
 }
