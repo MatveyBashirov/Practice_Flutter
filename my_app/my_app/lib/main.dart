@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:my_app/daycheck.dart';
 import 'package:my_app/lookcheck.dart';
 import 'package:my_app/product_list.dart';
 
@@ -87,5 +88,7 @@ class MyApp extends StatelessWidget {
 }
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    home: DaycheckForm(),
+  ));
 }
