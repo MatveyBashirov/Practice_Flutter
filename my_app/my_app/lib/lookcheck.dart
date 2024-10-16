@@ -20,6 +20,7 @@ class _MyClassState extends State<MyClass> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, int> counter = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 115, 132, 217),
@@ -31,6 +32,10 @@ class _MyClassState extends State<MyClass> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Вы нажали на кнопку ${counter['counter']} раз'),
+            ),
           Padding(
             padding: EdgeInsets.all(30),
             child: Image.asset(images[index]),

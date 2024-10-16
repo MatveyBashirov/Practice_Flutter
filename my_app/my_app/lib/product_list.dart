@@ -6,7 +6,7 @@ class ListClass extends StatefulWidget {
   const ListClass({super.key});
   @override
   _ListClassState createState() => _ListClassState();
-}
+} 
 
 class _ListClassState extends State<ListClass>{
   
@@ -24,6 +24,7 @@ class _ListClassState extends State<ListClass>{
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, int> counter = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Color.fromARGB(255, 115, 132, 217),
@@ -36,6 +37,10 @@ class _ListClassState extends State<ListClass>{
       body: Center(
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Вы нажали на кнопку ${counter['counter']} раз'),
+            ),
             Expanded(
               flex: 2,
               child: Column(

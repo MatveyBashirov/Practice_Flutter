@@ -5,7 +5,7 @@ import 'package:my_app/lookcheck.dart';
 import 'package:my_app/product_list.dart';
 
 class Homepage extends StatelessWidget{
-  const Homepage({super.key});
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,17 +27,43 @@ class Homepage extends StatelessWidget{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                onPressed:(){ Navigator.pushNamed(context, '/lookcheck');},
+                onPressed:(){ Navigator.pushNamed(
+                  context,
+                  '/lookcheck',
+                  arguments: <String, int>{
+                    'counter': counter
+                  });},
                 child: Text('Я хочу чтобы\nменя похвалили...', textAlign: TextAlign.center,)
                 ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                onPressed:(){ Navigator.pushNamed(context, '/products');},
+                onPressed:(){ Navigator.pushNamed(
+                  context,
+                  '/products',
+                  arguments: <String, int>{
+                    'counter': counter
+                  });
+                },
                 child: Text('Я опять забыл\nчто хочу купить...', textAlign: TextAlign.center)
                 ),
-            )
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Кнопка антистресс:',
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed:(){counter++;},
+                child: Text('Нажми на меня!', textAlign: TextAlign.center)
+                ),
+            ),
           ],
         ),
       )
@@ -50,7 +76,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Пример навигации',
       initialRoute: '/',
       routes: {
         '/': (context) => Homepage(),
