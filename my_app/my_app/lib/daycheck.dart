@@ -9,7 +9,7 @@ class DaycheckForm extends StatefulWidget {
 class DaycheckFormState extends State<DaycheckForm> {
   final _formKey = GlobalKey<FormState>();
   final formWordOfDay = TextEditingController();
-  final formGrade = TextEditingController();
+  int? selectedGrade;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +67,11 @@ class DaycheckFormState extends State<DaycheckForm> {
                           child: Text('${index + 1}'),
                         );
                       }),
-                      onChanged: (Object? value) {},
+                      onChanged: (value) {
+                        setState(() {
+                          selectedGrade = value;
+                        });
+                      },
                     ),
                   )
                 ]),
@@ -90,7 +94,7 @@ class DaycheckFormState extends State<DaycheckForm> {
     if (_formKey.currentState?.validate() ?? false) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Данные успешно сохранены!'),
+          content: Text('Слово дня: ${formWordOfDay.text} Оценка: $selectedGrade'),
         ),
       );
     }
