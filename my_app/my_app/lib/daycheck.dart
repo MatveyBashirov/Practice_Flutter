@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_app/appdata_provider.dart';
 
 class DaycheckForm extends StatefulWidget {
   @override
@@ -12,9 +13,10 @@ class DaycheckFormState extends State<DaycheckForm> {
   int? selectedGrade;
   @override
   Widget build(BuildContext context) {
+    var data = context.dependOnInheritedWidgetOfExactType<AppDataProvider>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 115, 132, 217),
+        backgroundColor: data?.appData.backColor,
         foregroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Center(
           child: Text('Опросник'),

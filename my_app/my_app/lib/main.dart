@@ -1,17 +1,34 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:my_app/app_data.dart';
+import 'package:my_app/appdata_provider.dart';
 import 'package:my_app/daycheck.dart';
 import 'package:my_app/lookcheck.dart';
 import 'package:my_app/product_list.dart';
 
-class Homepage extends StatelessWidget{
+class Util {
+  static Color randomColor() {
+    return Color(Random().nextInt(0xffffffff));
+  }
+}
+
+class Homepage extends StatefulWidget{
+  const Homepage({super.key});
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<Homepage>{
   int counter = 0;
   @override
   Widget build(BuildContext context) {
+    var data = context.dependOnInheritedWidgetOfExactType<AppDataProvider>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 115, 132, 217),
+        backgroundColor: data?.appData.backColor,
         foregroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Center(child: Text('Добро пожаловать!')),
       ),
@@ -61,7 +78,14 @@ class Homepage extends StatelessWidget{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                onPressed:(){counter++;},
+                onPressed:(){
+                  counter++;
+                  setState(() {
+                    AppDataProvider.of(context)
+                        ?.appData
+                        .changeBackground(Util.randomColor());
+                  });
+                },
                 child: Text('Нажми на меня!', textAlign: TextAlign.center)
                 ),
             ),
@@ -88,7 +112,11 @@ class MyApp extends StatelessWidget {
 }
 
 void main() {
-  runApp(MaterialApp(
-    home: DaycheckForm(),
-  ));
+  runApp(
+    AppDataProvider(
+      appData: AppData(backColor: Color(0xFFB3E5FC)),
+      child: MaterialApp(
+      home: MyApp(),
+        ),
+    ));
 }

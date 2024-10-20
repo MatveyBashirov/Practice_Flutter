@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:my_app/appdata_provider.dart';
 
 class ListClass extends StatefulWidget {
   const ListClass({super.key});
@@ -25,9 +26,10 @@ class _ListClassState extends State<ListClass>{
   @override
   Widget build(BuildContext context) {
     final Map<String, int> counter = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
+    var data = context.dependOnInheritedWidgetOfExactType<AppDataProvider>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:Color.fromARGB(255, 115, 132, 217),
+        backgroundColor: data?.appData.backColor,
         foregroundColor: Color.fromARGB(255, 255, 255, 255),
         title: 
         Center(

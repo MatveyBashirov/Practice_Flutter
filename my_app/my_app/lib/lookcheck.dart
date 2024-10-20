@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/appdata_provider.dart';
 
 class MyClass extends StatefulWidget {
   MyClass({super.key});
@@ -21,9 +22,10 @@ class _MyClassState extends State<MyClass> {
   @override
   Widget build(BuildContext context) {
     final Map<String, int> counter = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
+    var data = context.dependOnInheritedWidgetOfExactType<AppDataProvider>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 115, 132, 217),
+        backgroundColor: data?.appData.backColor,
         foregroundColor: Color.fromARGB(255, 255, 255, 255),
         title: Center(child: Text('Генератор комплиментов')),
       ),
