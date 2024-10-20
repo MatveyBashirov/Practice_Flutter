@@ -69,6 +69,19 @@ class _HomePageState extends State<Homepage>{
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed:(){ Navigator.pushNamed(
+                  context,
+                  '/daycheck',
+                  arguments: <String, int>{
+                    'counter': counter
+                  });
+                },
+                child: Text('Я опять забыл\nчто хочу купить...', textAlign: TextAlign.center)
+                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Кнопка антистресс:',
                 style: TextStyle(fontSize: 16),
@@ -106,6 +119,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => Homepage(),
         '/lookcheck': (context) => MyClass(),
         '/products': (context) => ListClass(),
+        '/daycheck': (context) => DaycheckForm(),
       },
     );
   }
