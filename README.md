@@ -257,3 +257,47 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
+### 5. Управление состоянием с помощью InheretedWidget
+На главной странице создал кнопку, по которой пользователь может нажать и поменять цвет `AppBar` у виджета. Чтобы перенести данную настройку цвета на `AppBar` на остальных экранов, создал новый виджет, расширяющий `InheretedWidget`
+```dart
+import 'package:flutter/material.dart';
+import 'package:my_app/app_data.dart';
+
+class AppDataProvider extends InheritedWidget{
+  const AppDataProvider(
+    {required this.appData, required super.child, super.key}
+  );
+
+  final AppData appData;
+  static AppDataProvider? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<AppDataProvider>();
+  
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    return true;
+  }
+}
+```
+>Созданный класс использовал для получения информации о цвете
+>из виджетов на других экранах
+```dart
+//Класс Daychek на втором экране
+
+@override
+  Widget build(BuildContext context) {
+    final Map<String, int> counter = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
+    var data = context.dependOnInheritedWidgetOfExactType<AppDataProvider>();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: data?.appData.backColor,
+        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+        title: Center(child: Text('Генератор комплиментов')),
+      ),
+    )
+      ...
+  }
+```
+Ниже приведены скриншоты работы программы:<br>
+<img src="images/appdata/appdata1.JPG" alt="Исполнение программы (1)" style="width: 50%;">
+<img src="images/appdata/appdata2.JPG" alt="Исполнение программы (2)" style="width: 50%;">
+<img src="images/appdata/appdata3.JPG" alt="Исполнение программы (3)" style="width: 50%;"><br>

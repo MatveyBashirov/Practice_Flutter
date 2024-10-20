@@ -77,7 +77,7 @@ class _HomePageState extends State<Homepage>{
                     'counter': counter
                   });
                 },
-                child: Text('Я опять забыл\nчто хочу купить...', textAlign: TextAlign.center)
+                child: Text('Я хочу поделиться\nкак прошел день!', textAlign: TextAlign.center)
                 ),
             ),
             Padding(
