@@ -45,6 +45,13 @@ class _ListClassState extends State<ListClass>{
   }
   }
 
+  void removeFromList(int index) {
+    setState(() {
+      products.removeAt(index);
+    });
+    saveProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map<String, int> counter = ModalRoute.of(context)!.settings.arguments as Map<String, int>;
@@ -97,7 +104,16 @@ class _ListClassState extends State<ListClass>{
               itemBuilder: (BuildContext context, int index){
                 return Container(
                   height: 30,
-                  child: Center(child: Text(products[index]),),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(child: Text(products[index]),),
+                      IconButton(
+                          icon: Icon(Icons.delete, color: Colors.grey),
+                          onPressed: () => removeFromList(index),
+                        ),
+                    ],
+                  ),
                 );
               },
               separatorBuilder: (BuildContext context, int index) => const Divider(),
