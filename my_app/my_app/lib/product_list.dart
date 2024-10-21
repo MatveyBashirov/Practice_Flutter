@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_app/appdata_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ListClass extends StatefulWidget {
   const ListClass({super.key});
@@ -12,6 +13,27 @@ class ListClass extends StatefulWidget {
 class _ListClassState extends State<ListClass>{
   
   TextEditingController controller = TextEditingController();
+  List<String> products = [];
+  late SharedPreferences prefs;
+
+  @override
+  void initState(){
+    super.initState();
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async{
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      products = prefs.getStringList('products')??[];
+    });
+  }
+
+  Future<void> saveProducts() async {
+    prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('products', products);
+  }
+
   void addToList(){
     String product = controller.text;
     if (product.isNotEmpty) {
@@ -19,9 +41,9 @@ class _ListClassState extends State<ListClass>{
       products.add(product);
     });
     controller.clear();
+    saveProducts();
   }
   }
-  List<String> products = ['молоко', 'хлеб', 'печенье'];
 
   @override
   Widget build(BuildContext context) {
